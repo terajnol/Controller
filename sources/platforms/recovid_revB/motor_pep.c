@@ -1,5 +1,9 @@
+#include "common.h"
+#include "controller.h"
 #include "recovid_revB.h"
+#include "platform.h"
 #include "platform_config.h"
+#include "breathing.h"
 #include <math.h>
 
 static TIM_HandleTypeDef* _motor_tim = NULL;
@@ -59,6 +63,16 @@ bool motor_pep_move(int relative_mm) {
     HAL_TIM_Base_Start_IT(_motor_tim);
   }
   return true;
+}
+
+void regulation_pep() {
+#define MOTOR_TO_PEP_FACTOR (1.7)
+  float pep_objective = get_setting_PEP_cmH2O();
+  float current_pep = get_PEP_cmH2O();
+  int relative_pep = (pep_objective*10.f - current_pep*10.f);
+  if(abs(relative_pep) > 3) {
+    motor_pep_move( (int) ((float)relative_pep/MOTOR_TO_PEP_FACTOR));
+  }
 }
 
 bool motor_pep_home() {

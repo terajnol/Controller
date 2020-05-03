@@ -225,8 +225,7 @@ void breathing_run(void *args) {
               VMe_Lpm   = (VTe_mL/1000) * FR_pm;
 
               xEventGroupSetBits(brthCycleState, BRTH_RESULT_UPDATED);
-
-              // TODO regulation_pep();
+              regulation_pep();
               enter_state(Finished);
           }
 	  sample_PEP_cmH2O(read_Paw_cmH2O());

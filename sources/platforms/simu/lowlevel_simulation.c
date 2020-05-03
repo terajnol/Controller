@@ -194,6 +194,8 @@ bool is_motor_pep_home() { return true; }
 //TODO Not yet implemented
 bool is_motor_pep_moving() { return true; }
 
+//TODO Not yet implemented
+void regulation_pep() {}
 // ------------------------------------------------------------------------------------------------
 
 bool init_valve() { return true; }

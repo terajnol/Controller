@@ -90,6 +90,8 @@ bool motor_pep_home();
 //!
 bool is_motor_pep_home();
 
+void regulation_pep();
+
 // ------------------------------------------------------------------------------------------------
 
 //! Called during initialisation only
